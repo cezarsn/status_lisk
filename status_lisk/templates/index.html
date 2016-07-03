@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link  rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.min.css')}}">
+    <title>{{lisk_servers.status}} / {{lisk_servers.name}}</title>
+</head>
+<body>
+<header class="container">
+        <span class="page-header">
+            <h3 class="well">Delegate: {{delegate.name}} / Rank {{delegate.rank}}</h3>
+        </span>
+</header>
+
+<section class="container">
+<div class="jumbotron">
+    {% if lisk_servers.status %}
+        <h1>{{lisk_servers.name}} : <span class="label label-success">{{lisk_servers.status}}</span></h1>
+    {% else %}
+        <h1>{{lisk_servers.name}} : <span class="label label-danger">Critical</span></h1>
+    {% endif %}
+
+    <p class="lead">IP Address: <a class="btn btn-lg btn-success" href="{{lisk_servers.url}}" role="button">{{lisk_servers.host}}</a> / Port:{{lisk_servers.port}} </p>
+</div>
+<div>
+    {%for server in ref_servers%}
+          <p><code>{{server.name}} : {{server.status}}</code></p>
+    {%endfor%}
+</div>
+
+
+</section>
+<section class="container">
+    <div>same useful link for Lisk</div>
+</section>
+
+<footer class="container">
+    <div>this is the footer</div>
+</footer>
+</body>
+</html>
