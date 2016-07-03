@@ -15,7 +15,7 @@
 <section class="container">
 <div class="jumbotron">
     {% if lisk_servers.status %}
-        <h1>{{lisk_servers.name}} : <span class="label label-success">{{lisk_servers.status}}</span></h1>
+        <h2>{{lisk_servers.name}} : <span class="label label-success">{{lisk_servers.status}}</span></h2>
     {% else %}
         <h1>{{lisk_servers.name}} : <span class="label label-danger">Critical</span></h1>
     {% endif %}
@@ -24,7 +24,7 @@
 </div>
 <div>
     {%for server in ref_servers%}
-          <p><code>{{server.name}} : {{server.status}}</code></p>
+          <h3><code>{{server.name}} : {{server.status}}</code></h3>
     {%endfor%}
 </div>
 
