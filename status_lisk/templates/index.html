@@ -17,7 +17,7 @@
     {% if lisk_servers.status %}
         <h2>{{lisk_servers.name}} : <span class="label label-success">{{lisk_servers.status}}</span></h2>
     {% else %}
-        <h1>{{lisk_servers.name}} : <span class="label label-danger">Critical</span></h1>
+        <h2>{{lisk_servers.name}} : <span class="label label-danger">Critical</span></h2>
     {% endif %}
 
     <p class="lead">IP Address: <a class="btn btn-lg btn-success" href="{{lisk_servers.url}}" role="button">{{lisk_servers.host}}</a> / Port:{{lisk_servers.port}} </p>
