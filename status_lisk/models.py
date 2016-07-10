@@ -1,12 +1,13 @@
 import controllerts
 
 class Server(object):
-    def __init__(self, protocol, host, port, name):
+    def __init__(self, protocol, host, port, name, net):
         self.protocol = protocol
         self.host = host
         self.port = port
         self.name = name
         self.url = '{}://{}:{}/'.format(self.protocol, self.host, self.port)
+	self.net = net
         self.status = self.get_block_heigh()
 
 
