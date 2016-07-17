@@ -5,7 +5,7 @@ app = Flask(__name__)
 
 import models
 import views
-import controllerts
+import controllers
 
 
 if __name__ == "__main__":

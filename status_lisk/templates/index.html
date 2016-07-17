@@ -16,7 +16,7 @@
 <section class="container">
 
 	<div class="jumbotron">	
-        <h1>Testnet</h1>
+        <h1>Testnet <span class="label label-success">{{ref_servers[0].status}}</span></h1>
 	
 	{% for lisk_server in lisk_servers if lisk_server.net == "testnet" %}
 	
@@ -32,7 +32,7 @@
 
 
 	<div class="jumbotron">
-	<h1>Mainnet</h1>
+	<h1>Mainnet <span class="label label-success">{{ref_servers[1].status}}</span></h1>
 
 	{% for lisk_server in lisk_servers if lisk_server.net == "mainnet" %}
 	
@@ -52,16 +52,20 @@
 
     <!-- p class="lead">IP Address: <a class="btn btn-lg btn-success" href="{{lisk_servers.url}}" role="button">{{lisk_servers.host}}</a> / Port:{{lisk_servers.port}} </p>
 
-    -->
+    
     {%for server in ref_servers%}
           <h3><code>{{server.name}} : {{server.status}}</code></h3>
     {%endfor%}
-
+    -->
 </section>
 
 
 <section class="container">
-    <div>same useful link for Lisk</div>
+    <div class="jumbotron"> <h3>BTC_LSK</h3>
+     <p class="label label-success">Last : {{ poloniex['last'] }}</p>
+     <p class="label label-prmary"> High : {{ poloniex['highestBid'] }}</p>
+     <p class="label label-info">Low : {{ poloniex['lowestAsk'] }}</p>
+    </div>
 </section>
 
 <footer class="container">
