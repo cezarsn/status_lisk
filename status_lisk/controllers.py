@@ -26,7 +26,7 @@ def make_poloniex_req(params):
         if response.status_code == 200:
             return response.json()
     except requests.exceptions.Timeout:
-        return False
+        return {"BTC_LSK":{"last":"-1","lowestAsk":"-1","highestBid":"-1"}}
 
 
 def get_last_forged():

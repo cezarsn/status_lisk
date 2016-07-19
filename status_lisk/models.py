@@ -29,6 +29,7 @@ class Delegate(object):
         self.lisk_address = lisk_address
         self.name = "wannabe_rotebaron"
         self.rank = 160
+        self.public_key = "0348a623c41ed7742a7f35a5812476750e2ba41208e16a29b110e6fe11e514d4"
 
     def __str__(self):
         return 'Lisk Address:{} -Name:{} -Rank:{}'.format(self.lisk_address, self.name, self.rank)

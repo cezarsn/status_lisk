@@ -27,3 +27,7 @@ def index():
     last_forged = controllers.get_last_forged()
     return render_template('index.html', lisk_servers=lisk_servers, ref_servers=ref_servers, delegate= delegate, poloniex=poloniex, last_forged=last_forged)
 
+
+@app.errorhandler(500)
+def internalServerError(error):
+    return "Internal Server Error"
