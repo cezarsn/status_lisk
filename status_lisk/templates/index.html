@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta http-equiv="refresh" content="300" >
     <link  rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.min.css')}}">
     <title>{{lisk_servers.status}} / {{lisk_servers.name}}</title>
 </head>
@@ -20,7 +21,10 @@
 	
 	{% for lisk_server in lisk_servers if lisk_server.net == "testnet" %}
 	
-	{% if lisk_server.status %}
+	{% if lisk_server.status and lisk_server.name =="C Local" %}
+			<h2>{{lisk_server.name}} : <span class="label label-success">{{lisk_server.status}}</span></h2>
+			<span><p>Forged block:{{last_forged[0]}} at {{last_forged[1]|round}}</p></span>
+	    {% elif lisk_server.status %}
 			<h2>{{lisk_server.name}} : <span class="label label-success">{{lisk_server.status}}</span></h2>
     	    {% else %}
 			<h2>{{lisk_server.name}} : <span class="label label-danger">Critical</span></h2>

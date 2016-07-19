@@ -24,5 +24,6 @@ def index():
     poloniex = controllers.make_poloniex_req('returnTicker')['BTC_LSK']
 
     delegate = Delegate(lisk_address = 16379340065696424247L)
-    return render_template('index.html', lisk_servers=lisk_servers, ref_servers=ref_servers, delegate= delegate, poloniex=poloniex)
+    last_forged = controllers.get_last_forged()
+    return render_template('index.html', lisk_servers=lisk_servers, ref_servers=ref_servers, delegate= delegate, poloniex=poloniex, last_forged=last_forged)
 

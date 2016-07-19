@@ -14,8 +14,11 @@ class Server(object):
 
 
     def get_block_heigh(self):
-        block_heigh = controllers.make_request(self.url, 'api/loader/status/sync', "")['height']
-        return block_heigh
+	try:
+            block_heigh = controllers.make_request(self.url, 'api/loader/status/sync', "")['height']
+            return block_heigh
+        except TypeError:
+            return False
 
     def __str__(self):
         return '{} - {}://{}:{}'.format(self.name, self.protocol, self.host, self.port)
