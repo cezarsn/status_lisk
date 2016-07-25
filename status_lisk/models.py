@@ -10,7 +10,8 @@ class Server(object):
         self.url = '{}://{}:{}/'.format(self.protocol, self.host, self.port)
         self.net = net
         self.status = self.get_block_height()
-        self.last_forged = self.get_last_forged("")
+        self.last_forged = controllers.get_last_forged()
+	#self.last_forged = self.get_last_forged("")
 
     def get_block_height(self):
         try:

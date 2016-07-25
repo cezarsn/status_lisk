@@ -16,6 +16,7 @@ import controllers
 def index():
     lisk_servers = [Server(protocol='http', host='192.168.178.31', port='7000', name='C Local', net='testnet'),
                     Server(protocol='http', host='45.63.117.29', port='7000', name='S Vultr', net='testnet'),
+		    Server(protocol='http', host='92.222.74.236', port='7000', name='C OVH', net='testnet'),
                     Server(protocol='http', host='185.92.221.6', port='8000', name='C Vultr', net='mainnet'),
                     Server(protocol='http', host='104.207.130.189', port='8000', name='S Vultr', net='mainnet')]
 
@@ -26,10 +27,15 @@ def index():
 
     poloniex = controllers.make_poloniex_req('returnTicker')['BTC_LSK']
 
-    delegate = Delegate(lisk_address=16379340065696424247L)
+    delegate = Delegate(lisk_address="16379340065696424247L")
     last_forged = controllers.get_last_forged()
     return render_template('index.html', lisk_servers=lisk_servers, ref_servers=ref_servers, delegate=delegate,
                            poloniex=poloniex, last_forged=last_forged)
+
+
+@app.route('/demo')
+def demo():
+    return render_template('demo.html')
 
 
 @app.errorhandler(500)
