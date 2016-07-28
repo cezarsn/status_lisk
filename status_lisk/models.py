@@ -34,18 +34,18 @@ class Server(object):
         try:
             last_forged = controllers.make_request(self.url, 'api/blocks',
                                                    {"generatorPublicKey": delegate.public_key, "orderBy": "height:desc",
-                                                  "limit": 1,})
+                                                    "limit": 1,})
 
-            self.last_forged =  last_forged['blocks'][0]["height"], last_forged['blocks'][0]["timestamp"]
+            self.last_forged = last_forged['blocks'][0]["height"], last_forged['blocks'][0]["timestamp"]
         except TypeError:
-            self.last_forged = -1
+            self.last_forged = -1, -1
 
     def get_status(self, ref_server):
         """
         Return if the server is in sync with an ref_server
         """
-        if (self.block_height % ref_server.block_height) < 10 or (self.block_height % self.last_forged) < 100:
-             self.is_sync = True
+        if (self.block_height % ref_server.block_height) < 10 and (self.block_height % self.last_forged[0]) < 100:
+            self.is_sync = True
         else:
             self.is_sync = False
 
@@ -54,8 +54,6 @@ class Server(object):
 
     def update(self):
         self.get_block_height()
-
-
 
     def __str__(self):
         return '{} - {}://{}:{}'.format(self.name, self.protocol, self.host, self.port)
@@ -93,3 +91,13 @@ class Delegate(object):
 
     def __str__(self):
         return 'Lisk Address:\t{} - Name:\t{} - Rank:\t{}'.format(self.address, self.username, self.rate)
+
+
+lisk_servers = [Server(protocol='http', host='192.168.178.31', port='7000', name='C Local', net='testnet'),
+                Server(protocol='http', host='45.63.117.29', port='7000', name='S Vultr', net='testnet'),
+                Server(protocol='http', host='92.222.74.236', port='7000', name='C OVH', net='testnet'),
+                Server(protocol='http', host='185.92.221.6', port='8000', name='C Vultr', net='mainnet'),
+                Server(protocol='http', host='104.207.130.189', port='8000', name='S Vultr', net='mainnet')]
+
+ref_servers = [Server(protocol='https', host='testnet.lisk.io', port='443', name='testnet.lisk.io', net='testnet'),
+               Server(protocol='https', host='login.lisk.io', port='443', name='login.lisk.io', net='mainnet')]
