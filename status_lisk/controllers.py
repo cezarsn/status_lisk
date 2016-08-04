@@ -9,7 +9,7 @@ def make_request(url, api_path, params):
     url_full = url + api_path
     try:
         response = requests.get(url_full, params=params, timeout=1,)
-        app.logger.debug(response.url)
+        #app.logger.debug(response.url)
         if response.status_code == 200:
             return response.json()
     except requests.exceptions.Timeout:

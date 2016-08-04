@@ -1,14 +1,25 @@
 from flask import Flask, render_template
 from status_lisk import app
+from models import Server, Delegate
 import models
 import controllers
 
 
-def status():
-    lisk_servers = models.lisk_servers
-    for elem in lisk_servers:
-        elem.update()
-    return lisk_servers
+def status_delegate():
+    models.delegate_cezar.get_delegate_info(models.servers_testnet_cezar[0])
+
+
+def status_server():
+    #app.logger.debug(models.lisk_servers)
+    models.delegate_cezar.get_delegate_info(models.servers_testnet_cezar[0])
+    models.ref_testnet.get_block_height()
+    models.servers_testnet_cezar[0].get_last_forged(models.delegate_cezar)
+
+    for server in models.servers_testnet_cezar:
+        server.get_block_height()
+        server.get_status(models.ref_testnet)
+
+
 
 
 @app.route('/')
@@ -33,9 +44,15 @@ def index():
                            poloniex=poloniex, last_forged=last_forged)
 
 
-@app.route('/demo')
-def demo():
-    return render_template('demo.html', lisk_servers=status())
+@app.route('/dashboard')
+def dashboard():
+    status_server()
+    return render_template('dashboard.html', lisk_testnet_servers=models.servers_testnet_cezar, ref_testnet = models.ref_testnet)
+
+
+@app.route('/deaia')
+def deaia():
+    return status_delegate()
 
 
 @app.errorhandler(500)
