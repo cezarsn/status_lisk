@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+
+
+{% block testnet %}
+
+<div class="container  bg-info">
+    <div class="row">
+        <div class="col-lg-12">
+            <h1 class="page-header">Testnet: <span class="label label-success">{{ ref_testnet.block_height }}</span></h1>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-8">
+            <dl class="dl-horizontal">
+            {% for server in lisk_testnet_servers if server.net == "testnet" %}
+                <h3><dt>{{server.name}}</dt></h3>
+                <h3><dd>{{server.block_height}} : <span class="label label-success">{{server.is_sync}}</span> : {{server.last_forged[0]}}</dd></h3>
+            {% endfor %}
+            </dl>
+        </div>
+        <div class="col-lg-4">
+            <span class="chat-panel">Log area</span>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
+
+{% block mainnet %}
+
+<div class="container bg-success">
+    <div class="row">
+        <div class="col-lg-12">
+            <h1 class="page-header">Mainnet: <span class="label label-success">555555555</span></h1>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-8">
+            Node1,Node1,Node1,Node1,Node1
+        </div>
+        <div class="col-lg-4">
+            Log area
+        </div>
+    </div>
+</div>
+
+{% endblock %}
+
