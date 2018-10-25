@@ -26,10 +26,16 @@ def status_server():
 @app.route('/index')
 def index():
     lisk_servers = [Server(protocol='http', host='192.168.178.31', port='7000', name='C Local', net='testnet'),
+<<<<<<< HEAD
+                    Server(protocol='http', host='45.32.158.11', port='7000', name='S Vultr', net='testnet'),
+		    Server(protocol='http', host='92.222.74.236', port='7000', name='C OVH', net='testnet'),
+=======
                     Server(protocol='http', host='45.63.117.29', port='7000', name='S Vultr', net='testnet'),
                     Server(protocol='http', host='92.222.74.236', port='7000', name='C OVH', net='testnet'),
+>>>>>>> 3d14a95bd9383ecd95ef8f8de797c4fe26267468
                     Server(protocol='http', host='185.92.221.6', port='8000', name='C Vultr', net='mainnet'),
-                    Server(protocol='http', host='104.207.130.189', port='8000', name='S Vultr', net='mainnet')]
+                    Server(protocol='http', host='104.207.130.189', port='8000', name='S Vultr', net='mainnet'),
+                    Server(protocol='http', host='31.187.70.167', port='7000', name='Sa', net='testnet')]
 
     ref_servers = [Server(protocol='https', host='testnet.lisk.io', port='443', name='testnet.lisk.io', net='testnet'),
                    Server(protocol='https', host='login.lisk.io', port='443', name='login.lisk.io', net='mainnet')]
@@ -44,6 +50,20 @@ def index():
                            poloniex=poloniex, last_forged=last_forged)
 
 
+<<<<<<< HEAD
+
+
+@app.route('/refa_nodul')
+def refa_nodul():
+    return controllers.rebuild_node()
+     
+
+
+
+@app.route('/demo')
+def demo():
+    return render_template('demo.html')
+=======
 @app.route('/dashboard')
 def dashboard():
     status_server()
@@ -53,6 +73,7 @@ def dashboard():
 @app.route('/deaia')
 def deaia():
     return status_delegate()
+>>>>>>> 3d14a95bd9383ecd95ef8f8de797c4fe26267468
 
 
 @app.errorhandler(500)
